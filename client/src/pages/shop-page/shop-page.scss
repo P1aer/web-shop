@@ -1,0 +1,23 @@
+
+.card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100% !important;
+  max-width: 200px;
+  img {
+    height: 150px !important;
+    width: 150px !important;
+    object-fit: contain;
+  }
+  .card-title {
+    text-align: center;
+    font-weight: bold !important;
+  }
+  .card-content {
+    p {
+      text-align: center !important;
+    }
+  }
+}
