@@ -26,9 +26,9 @@ const ShopMain = () => {
         <div className="row">
         {goods.map((good) =>
             <div key={good.name} className="col s1 m2">
-                <div className="card">
+                <div className="card card-shop">
                     <div className="card-image">
-                        <img src={good.image} alt="image"/>
+                        <img src={good.image} alt={good.name}/>
                     </div>
                     <div className="card-content">
                         <span className="card-title">{good.name}</span>

@@ -66,5 +66,76 @@ router.post("/login", [
     }
 })
 
+// /api/auth/:id
+router.get("/:id", async(req, res) => {
+    try {
+        const id = req.params.id
+        const user = await User.findById(id)
+        res.json(user.email)
+    } catch (e) {
+        res.status(500).json({ message: "Ошибка" })
+    }
+})
+
+router.delete("/delete", function (req, res, next) {
+    if (req.method === "OPTIONS") {
+        return next()
+    }
+    try {
+        const token = req.headers.authorization.split(" ")[1]
+        if (!token) {
+            return  res.status(401).json({ message: "Нет авторизации"})
+        }
+        console.log(token)
+        req.user = jwt.verify(token,"Sample Text")
+        next()
+    }
+    catch (e) {
+        res.status(401).json({ message: "Нет авторизации по токену"})
+    }
+}, async (req, res) =>{
+    try {
+        await User.findByIdAndDelete(req.user.userId)
+        return res.status(200).json({message: "пользователь удален"})
+    } catch (e) {
+        return  res.status(500).json( {message: "Ошибка"})
+    }
+})
+router.put("/update",[
+    check("email", "Некорректный email").isEmail(),
+], function (req, res, next) {
+    if (req.method === "OPTIONS") {
+        return next()
+    }
+    try {
+        const token = req.headers.authorization.split(" ")[1]
+        if (!token) {
+            return  res.status(401).json({ message: "Нет авторизации"})
+        }
+        console.log(token)
+        req.user = jwt.verify(token,"Sample Text")
+        next()
+    }
+    catch (e) {
+        res.status(401).json({ message: "Нет авторизации по токену"})
+    }
+}, async (req, res) =>{
+    try {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array(),
+                message: "Некорректные данные"
+            })
+        }
+        const email = req.body.email
+        await User.findByIdAndUpdate(req.user.userId, {
+            email
+        })
+        return res.status(200).json(email)
+    } catch (e) {
+        return  res.status(500).json( {message: "Ошибка"})
+    }
+})
 
 module.exports = router

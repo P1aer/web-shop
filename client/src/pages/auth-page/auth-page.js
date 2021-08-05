@@ -39,7 +39,6 @@ const AuthPage = () => {
                         <div>
                             <div className="input-field">
                                 <input onChange={changeHandler} id="email"
-                                       placeholder="Введите mail"
                                        name="email"
                                        value={form.email}
                                        type="text"/>
@@ -47,7 +46,6 @@ const AuthPage = () => {
                             </div>
                             <div className="input-field">
                                 <input id="password" onChange={changeHandler}
-                                       placeholder="Введите password"
                                        name="password"
                                        value={form.password}
                                        type="password"/>

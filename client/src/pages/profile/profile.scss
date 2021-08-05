@@ -1,0 +1,31 @@
+.profile-container {
+  margin-top: 25px !important;
+  flex-direction: column;
+  border-radius: 5px;
+  height: 800px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  .profile-modal{
+    max-width: 55% !important;
+    width: fit-content !important;
+  }
+  button {
+    font-size: 20px;
+  }
+}
+.profile-block-info {
+  display: flex;
+}
+.profile-content {
+  padding: 20px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  h4 {
+    margin: 0;
+  }
+}
+.profile-footer {
+  display: flex;
+  align-items: center;
+}
