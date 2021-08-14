@@ -2,7 +2,6 @@ import React, {useCallback, useContext, useEffect, useState} from "react"
 import "./profile.scss"
 import useHttp from "../../hooks/http.hook";
 import Loader from "../../Loader/loader";
-import useAuth from "../../hooks/auth.hook";
 import Context from "../../context";
 import useMessage from "../../hooks/message.hook";
 
@@ -25,7 +24,6 @@ const ProfileMain = () => {
     },[request])
     useEffect(() => {
         fetchInfo()
-        console.log(instances);
     }, [fetchInfo])
     useEffect(() => {
         message(error)
@@ -37,7 +35,8 @@ const ProfileMain = () => {
                 authorization: `becrypt ${token}`
             })
             logout()
-        } catch (e) {}
+        } catch (e) {
+        }
     }
     const changeHandler = event => {
         setForm({...form,[event.target.name]: event.target.value})
@@ -51,7 +50,8 @@ const ProfileMain = () => {
             setInfo(data)
             setEdit(false);
             setForm({email: ""})
-        } catch (e) {}
+        } catch (e) {
+        }
     }
 
     if (loading) {
